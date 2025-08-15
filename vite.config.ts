@@ -16,5 +16,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/Benefit-portal/',
+  base: mode === 'production' ? './' : '/Benefit-portal/',
 }));
