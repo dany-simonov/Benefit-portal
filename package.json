@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://dany-simonov.github.io/benefit-ai-portal",
+  "homepage": "https://dany-simonov.github.io/Benefit-portal",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
