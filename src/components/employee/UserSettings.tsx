@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import { Eye, EyeOff } from 'lucide-react';
 
 export function UserSettings() {
   const { logout } = useAuth();
@@ -37,6 +38,8 @@ export function UserSettings() {
     language: 'ru',
     timezone: 'Europe/Moscow'
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSaveNotifications = () => {
     toast({
@@ -174,32 +177,80 @@ export function UserSettings() {
             
             <div className="space-y-2">
               <Label htmlFor="current-password">Текущий пароль</Label>
-              <Input
-                id="current-password"
-                type="password"
-                value={security.currentPassword}
-                onChange={(e) => setSecurity(prev => ({ ...prev, currentPassword: e.target.value }))}
-              />
+              <div className="relative">
+                <Input
+                  id="current-password"
+                  type={showPassword ? "text" : "password"}
+                  value={security.currentPassword}
+                  onChange={(e) => setSecurity(prev => ({ ...prev, currentPassword: e.target.value }))}
+                  className="pr-10"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="new-password">Новый пароль</Label>
-              <Input
-                id="new-password"
-                type="password"
-                value={security.newPassword}
-                onChange={(e) => setSecurity(prev => ({ ...prev, newPassword: e.target.value }))}
-              />
+              <div className="relative">
+                <Input
+                  id="new-password"
+                  type={showPassword ? "text" : "password"}
+                  value={security.newPassword}
+                  onChange={(e) => setSecurity(prev => ({ ...prev, newPassword: e.target.value }))}
+                  className="pr-10"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="confirm-password">Подтвердите пароль</Label>
-              <Input
-                id="confirm-password"
-                type="password"
-                value={security.confirmPassword}
-                onChange={(e) => setSecurity(prev => ({ ...prev, confirmPassword: e.target.value }))}
-              />
+              <div className="relative">
+                <Input
+                  id="confirm-password"
+                  type={showPassword ? "text" : "password"}
+                  value={security.confirmPassword}
+                  onChange={(e) => setSecurity(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                  className="pr-10"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
             </div>
 
             <Button onClick={handleChangePassword}>
@@ -209,73 +260,7 @@ export function UserSettings() {
         </CardContent>
       </Card>
 
-      {/* General Settings */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Общие настройки</CardTitle>
-          <CardDescription>Язык интерфейса и часовой пояс</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Язык интерфейса</Label>
-              <Select value={general.language} onValueChange={(value) => setGeneral(prev => ({ ...prev, language: value }))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ru">Русский</SelectItem>
-                  <SelectItem value="en">English</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
 
-            <div className="space-y-2">
-              <Label>Часовой пояс</Label>
-              <Select value={general.timezone} onValueChange={(value) => setGeneral(prev => ({ ...prev, timezone: value }))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Europe/Moscow">Москва (UTC+3)</SelectItem>
-                  <SelectItem value="Europe/Samara">Самара (UTC+4)</SelectItem>
-                  <SelectItem value="Asia/Yekaterinburg">Екатеринбург (UTC+5)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Login History */}
-      <Card>
-        <CardHeader>
-          <CardTitle>История входов</CardTitle>
-          <CardDescription>Последние сеансы в системе</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {loginHistory.map((login, index) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                    <span className="text-green-600 text-xs">✓</span>
-                  </div>
-                  <div>
-                    <p className="font-medium">{login.device}</p>
-                    <p className="text-sm text-gray-600">{login.date}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <Badge variant="outline">
-                    {login.location}
-                  </Badge>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
