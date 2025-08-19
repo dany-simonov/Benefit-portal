@@ -75,7 +75,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 500));
     const users = [...getUsersFromStorage(), ...demoUsers.filter(d => !getUsersFromStorage().some(u => u.email === d.email))];
-    const foundUser = users.find(u => u.email === email && u.password === password);
+    let foundUser = users.find(u => u.email === email && u.password === password);
+
+    // Special login for HR
+    if (email === 'hr@ppr.com') {
+      foundUser = {
+        id: 'hr-ppr-mock',
+        email: 'hr@ppr.com',
+        name: 'HR Ppr',
+        role: 'hr',
+        department: 'HR',
+        pointsBalance: 0,
+        avatar: '/placeholder.svg',
+        password: password, // Any password will work
+      };
+    }
+
     if (foundUser) {
       setUser(foundUser);
       setIsLoading(false);
