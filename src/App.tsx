@@ -9,7 +9,6 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 // Public pages
 import MarketingLanding from "./pages/MarketingLanding";
 import Auth from "./pages/Auth";
-import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Demo from "./pages/Demo";
@@ -84,9 +83,6 @@ const App = () => (
               <Route path="recommendations" element={<AiInsights />} />
               <Route path="settings" element={<HrSettings />} />
             </Route>
-            
-            {/* 404 */}
-            <Route path="*" element={<NotFound />} />
           </Routes>
         </HashRouter>
       </AuthProvider>
