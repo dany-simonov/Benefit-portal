@@ -39,7 +39,7 @@ export function BenefitCatalog() {
   }, []);
 
   return (
-    <div className="space-y-6 px-6 md:px-12">
+    <div className="space-y-6 px-6 md:px-12 pt-6 pb-20">
       {/* Заголовок */}
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
@@ -51,19 +51,21 @@ export function BenefitCatalog() {
         </div>
       </div>
 
-      {/* Вкладки категорий */}
-      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as BenefitCategoryKey)}>
-        <TabsList className="flex flex-wrap gap-2">
-          {CATEGORY_TABS.map(t => (
-            <TabsTrigger key={t.key} value={t.key} className="capitalize">
-              {t.title}
-              <Badge variant="secondary" className="ml-2">
-                {categoryStats[t.key].count}
-              </Badge>
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+      {/* Вкладки категорий — сдвинуты влево с небольшим отступом */}
+      <div className="pl-2">
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as BenefitCategoryKey)}>
+          <TabsList className="flex flex-wrap gap-2">
+            {CATEGORY_TABS.map(t => (
+              <TabsTrigger key={t.key} value={t.key} className="capitalize">
+                {t.title}
+                <Badge variant="secondary" className="ml-2">
+                  {categoryStats[t.key].count}
+                </Badge>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
 
       {/* Сводная статистика по активной категории */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -83,7 +85,7 @@ export function BenefitCatalog() {
           <Card key={item.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="py-3">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-lg">
+                <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-lg flex-shrink-0">
                   {item.icon}
                 </div>
                 <div>
@@ -116,7 +118,7 @@ export function BenefitCatalog() {
           <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full p-6 relative">
             <button className="absolute top-2 right-3 text-2xl text-gray-400 hover:text-gray-700" onClick={() => setSelected(null)}>&times;</button>
             <div className="flex items-start gap-4 mb-4">
-              <div className="w-20 h-20 rounded-lg bg-blue-50 flex items-center justify-center text-4xl">{selected.icon}</div>
+              <div className="w-20 h-20 rounded-lg bg-gray-100 flex items-center justify-center text-4xl flex-shrink-0">{selected.icon}</div>
               <div>
                 <h2 className="text-2xl font-bold">{selected.name}</h2>
                 <div className="text-gray-600">{selected.shortDescription}</div>
