@@ -1,158 +1,189 @@
-import React, { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { benefitCategories, mockRecommendations } from '@/data/mockData';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CATEGORY_TABS, BENEFITS, type BenefitCategoryKey, type BenefitItem } from '@/data/benefitsCatalog';
 import { formatNumber } from '@/lib/utils';
 
 export function BenefitCatalog() {
-  // Получаем лимиты распределения из БД (localStorage)
-  let allocations: Record<string, number> = {};
-  try {
-    const saved = localStorage.getItem('benefit-allocations');
-    if (saved) allocations = JSON.parse(saved);
-  } catch (error) {
-    console.log('Ошибка загрузки лимитов:', error);
-  }
-  const [selected, setSelected] = useState(null);
+  const [activeTab, setActiveTab] = useState<BenefitCategoryKey>('all');
+  const [query, setQuery] = useState('');
+  const [selected, setSelected] = useState<BenefitItem | null>(null);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return BENEFITS.filter(b => {
+      const byCat = activeTab === 'all' || b.category === activeTab;
+      const byQuery = !q || [b.name, b.shortDescription].some(t => t.toLowerCase().includes(q));
+      return byCat && byQuery;
+    });
+  }, [activeTab, query]);
+
+  const categoryStats = useMemo(() => {
+    const map: Record<BenefitCategoryKey, { count: number; partners: number }> = {
+      all: { count: BENEFITS.length, partners: BENEFITS.reduce((s, b) => s + (b.stats.partners || 0), 0) },
+      health: { count: 0, partners: 0 },
+      products: { count: 0, partners: 0 },
+      travel: { count: 0, partners: 0 },
+      mobility: { count: 0, partners: 0 },
+      auto: { count: 0, partners: 0 },
+      education: { count: 0, partners: 0 },
+    };
+    for (const b of BENEFITS) {
+      map[b.category].count += 1;
+      map[b.category].partners += b.stats.partners || 0;
+    }
+    return map;
+  }, []);
+
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-6 px-6 md:px-12">
+      {/* Заголовок */}
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-bold">Каталог льгот</h1>
-          <p className="text-gray-600">Обзор доступных категорий льгот</p>
+          <p className="text-gray-600">Интуитивный каталог с фильтрами, поиском и рекомендациями</p>
+        </div>
+        <div className="w-full md:w-80">
+          <Input placeholder="Поиск по льготам..." value={query} onChange={(e) => setQuery(e.target.value)} />
         </div>
       </div>
 
-      {/* Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {benefitCategories.map((category) => {
-          // Если есть лимит из БД — используем его
-          const userLimit = allocations[category.id] ?? category.totalLimit;
-          const usagePercent = (category.usedPoints / userLimit) * 100;
-          return (
-            <Card key={category.id} className="hover:shadow-md transition-shadow">
-              <CardHeader>
-                <div className="flex items-center space-x-3">
-                  <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center text-white text-xl`}>
-                    {category.icon}
-                  </div>
-                  <div>
-                    <CardTitle className="text-lg">{category.name}</CardTitle>
-                    <CardDescription>{category.description}</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-sm mb-1">
-                      <span>Использовано</span>
-                      <span>{Math.round(usagePercent)}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-blue-600 h-2 rounded-full" 
-                        style={{ width: `${usagePercent}%` }}
-                      ></div>
-                    </div>
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
-                      <span>{formatNumber(category.usedPoints)}</span>
-                      <span>{formatNumber(userLimit)}</span>
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <p><strong>Партнеры:</strong> {category.providers.length}</p>
-                    <p><strong>Доступно:</strong> {formatNumber(userLimit - category.usedPoints)} баллов</p>
-                  </div>
-                  <Button variant="outline" className="w-full" onClick={() => setSelected(category)}>
-                    Подробнее
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+      {/* Вкладки категорий */}
+      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as BenefitCategoryKey)}>
+        <TabsList className="flex flex-wrap gap-2">
+          {CATEGORY_TABS.map(t => (
+            <TabsTrigger key={t.key} value={t.key} className="capitalize">
+              {t.title}
+              <Badge variant="secondary" className="ml-2">
+                {categoryStats[t.key].count}
+              </Badge>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+
+      {/* Сводная статистика по активной категории */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card>
+          <CardHeader className="pb-2"><CardTitle className="text-sm">Количество льгот</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-bold">{activeTab === 'all' ? BENEFITS.length : categoryStats[activeTab].count}</CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2"><CardTitle className="text-sm">Партнёров</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-bold">{activeTab === 'all' ? categoryStats.all.partners : categoryStats[activeTab].partners}</CardContent>
+        </Card>
       </div>
+
+      {/* Список льгот — компактные карточки */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {filtered.map((item) => (
+          <Card key={item.id} className="hover:shadow-md transition-shadow">
+            <CardHeader className="py-3">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-lg">
+                  {item.icon}
+                </div>
+                <div>
+                  <CardTitle className="text-base flex items-center gap-2">
+                    {item.name}
+                    {item.status === 'planned' && <Badge variant="outline">в разработке</Badge>}
+                  </CardTitle>
+                  <CardDescription className="text-sm">
+                    {item.shortDescription}
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-0 pb-4">
+              <div className="flex items-center justify-between text-sm">
+                <div className="text-gray-600">Партнёров</div>
+                <div className="font-semibold">{formatNumber(item.stats.partners || 0)}</div>
+              </div>
+              <Button className="w-full mt-3" onClick={() => setSelected(item)} disabled={item.status === 'planned'}>
+                Подробнее
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Детали льготы */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-8 relative">
-            <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl" onClick={() => setSelected(null)}>&times;</button>
-            <div className="flex items-center gap-4 mb-4">
-              <div className={`w-14 h-14 ${selected.color} rounded-lg flex items-center justify-center text-white text-2xl`}>{selected.icon}</div>
+          <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full p-6 relative">
+            <button className="absolute top-2 right-3 text-2xl text-gray-400 hover:text-gray-700" onClick={() => setSelected(null)}>&times;</button>
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-20 h-20 rounded-lg bg-blue-50 flex items-center justify-center text-4xl">{selected.icon}</div>
               <div>
-                <h2 className="text-2xl font-bold mb-1">{selected.name}</h2>
-                <div className="text-gray-600">{selected.description}</div>
+                <h2 className="text-2xl font-bold">{selected.name}</h2>
+                <div className="text-gray-600">{selected.shortDescription}</div>
               </div>
             </div>
-            <div className="mb-4">
-              <div className="font-semibold mb-1">Партнеры:</div>
-              <ul className="space-y-2">
-                {selected.providers.map((p) => (
-                  <li key={p.id} className="flex items-center gap-3">
-                    <img src={p.logo} alt={p.name} className="w-8 h-8 rounded" />
-                    <div>
-                      <div className="font-medium">{p.name}</div>
-                      <div className="text-xs text-gray-500">{p.description}</div>
-                      <div className="text-xs text-gray-400">Мин. баллов: {p.minPoints}, Макс. баллов: {p.maxPoints}</div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <div className="font-semibold mb-1">Как пользоваться</div>
+                {selected.howTo.length ? (
+                  <ol className="list-decimal list-inside text-sm space-y-1">
+                    {selected.howTo.map((s, i) => (<li key={i}>{s}</li>))}
+                  </ol>
+                ) : (
+                  <div className="text-sm text-gray-500">Информация в разработке</div>
+                )}
+              </div>
+              <div>
+                <div className="font-semibold mb-1">Преимущества</div>
+                {selected.advantages.length ? (
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    {selected.advantages.map((s, i) => (<li key={i}>{s}</li>))}
+                  </ul>
+                ) : (
+                  <div className="text-sm text-gray-500">—</div>
+                )}
+                <div className="font-semibold mt-4 mb-1">Ограничения</div>
+                {selected.limitations.length ? (
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    {selected.limitations.map((s, i) => (<li key={i}>{s}</li>))}
+                  </ul>
+                ) : (
+                  <div className="text-sm text-gray-500">—</div>
+                )}
+              </div>
             </div>
-            <div className="flex gap-4">
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 text-center">
               <div>
-                <div className="text-xs text-gray-500">Лимит</div>
-                <div className="font-bold">{formatNumber(allocations[selected.id] ?? selected.totalLimit)}</div>
+                <div className="text-xs text-gray-500">Партнёров</div>
+                <div className="font-semibold">{formatNumber(selected.stats.partners || 0)}</div>
               </div>
-              <div>
-                <div className="text-xs text-gray-500">Использовано</div>
-                <div className="font-bold">{formatNumber(selected.usedPoints)}</div>
-              </div>
-              <div>
-                <div className="text-xs text-gray-500">Доступно</div>
-                <div className="font-bold">{formatNumber((allocations[selected.id] ?? selected.totalLimit) - selected.usedPoints)}</div>
-              </div>
+              {typeof selected.stats.limit === 'number' && (
+                <div>
+                  <div className="text-xs text-gray-500">Лимит</div>
+                  <div className="font-semibold">{formatNumber(selected.stats.limit)}</div>
+                </div>
+              )}
+              {typeof selected.stats.used === 'number' && (
+                <div>
+                  <div className="text-xs text-gray-500">Использовано</div>
+                  <div className="font-semibold">{formatNumber(selected.stats.used)}</div>
+                </div>
+              )}
+              {typeof selected.stats.available === 'number' && (
+                <div>
+                  <div className="text-xs text-gray-500">Доступно</div>
+                  <div className="font-semibold">{formatNumber(selected.stats.available)}</div>
+                </div>
+              )}
             </div>
           </div>
         </div>
       )}
 
-      {/* Рекомендуемые льготы */}
-      <Card>
-        <CardHeader>
-          <CardTitle>💡 Рекомендуемые для вас</CardTitle>
-          <CardDescription>На основе вашей истории покупок</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {mockRecommendations.slice(0, 3).map((rec) => {
-              const category = benefitCategories.find(c => c.id === rec.categoryId);
-              return (
-                <Card key={rec.id} className="hover:shadow-md transition-shadow cursor-pointer">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-lg">{category?.icon}</span>
-                        <Badge variant="outline" className="text-xs">
-                          {rec.confidence}% совпадение
-                        </Badge>
-                      </div>
-                      <span className="text-sm text-gray-500">{formatNumber(rec.points)} баллов</span>
-                    </div>
-                    <h4 className="font-medium mb-1">{rec.title}</h4>
-                    <p className="text-sm text-gray-600 mb-3">{rec.description}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-green-600">{formatNumber(rec.price)} ₽</span>
-                      <Button size="sm">Попробовать</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
+      {/* Рекомендуемые льготы — по требованию можно вернуть */}
+      {/* ...закомментировано пользователем... */}
     </div>
   );
 }
