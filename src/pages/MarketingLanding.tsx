@@ -11,21 +11,21 @@ const MarketingLanding = () => {
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16 flex-wrap">
             <div className="flex items-center space-x-4">
               <div className="w-8 h-8 bg-gradient-to-br from-[#6AFCBA] to-[#B6D9FC] rounded-lg flex items-center justify-center text-white font-bold">
                 B
               </div>
-              <h1 className="text-xl font-bold">Benefit Admin</h1>
+              <h1 className="text-base xxs:text-lg sm:text-xl font-bold">Benefit Admin</h1>
           </div>
-            <div className="flex space-x-4">
+            <div className="flex items-center space-x-1 xxs:space-x-1 xs:space-x-2 sm:space-x-4">
               <Button variant="outline" onClick={() => navigate('/login')}>
                 Войти
               </Button>
-              <Button variant="secondary" onClick={() => navigate('/register')}>
+              <Button variant="secondary" className="hidden xs:inline-flex" onClick={() => navigate('/register')}>
                 Регистрация
               </Button>
-              <Button onClick={() => navigate('/demo')}>
+              <Button className="hidden xs:inline-flex" onClick={() => navigate('/demo')}>
                 Демо
               </Button>
             </div>
@@ -36,11 +36,11 @@ const MarketingLanding = () => {
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-xl xxs:text-2xl xs:text-3xl sm:text-4xl lg:text-6xl font-normal xxs:font-medium xs:font-semibold sm:font-bold text-gray-900 mb-6">
             Управление корпоративными
             <span className="text-gray-900"> льготами</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-sm xxs:text-base xs:text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Современная платформа для HR-менеджеров и сотрудников. 
             Кафетерий льгот с ИИ-аналитикой и персональными рекомендациями.
           </p>

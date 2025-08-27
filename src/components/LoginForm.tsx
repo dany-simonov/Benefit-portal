@@ -18,7 +18,7 @@ export function LoginForm() {
       await login(email, password);
       toast({
         title: "Успешный вход",
-        description: "Добро пожаловать в Benefit Admin AI!",
+        description: "Добро пожаловать в Benefit Admin!",
       });
     } catch (error) {
       toast({
@@ -36,7 +36,7 @@ export function LoginForm() {
           <div className="w-16 h-16 bg-gradient-to-br from-[#6AFCBA] to-[#B6D9FC] rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto">
             B
           </div>
-          <CardTitle className="text-2xl font-bold">Benefit Admin AI</CardTitle>
+          <CardTitle className="text-2xl font-bold">Benefit Admin</CardTitle>
           <CardDescription>
             Платформа управления корпоративными льготами
           </CardDescription>
