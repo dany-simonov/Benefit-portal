@@ -24,17 +24,17 @@ const Dashboard = () => {
   return (
     <div className="p-6 space-y-6">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
-        <img src={user?.avatar} alt="avatar" className="w-20 h-20 rounded-full border" />
+      <div className="flex flex-col xxs:flex-row gap-4 items-center mb-4">
+        <img src={user?.avatar} alt="avatar" className="w-16 h-16 xxs:w-20 xxs:h-20 rounded-full border" />
         <div>
-          <h1 className="text-2xl font-bold">Добро пожаловать, {user?.name}! 👋</h1>
-          <p className="text-gray-600">Email: {user?.email}</p>
-          <p className="text-gray-600">Отдел: {user?.department}</p>
+          <h1 className="text-xl xxs:text-2xl font-bold">Добро пожаловать, {user?.name}! 👋</h1>
+          <p className="text-sm xxs:text-base text-gray-600">Email: {user?.email}</p>
+          <p className="text-sm xxs:text-base text-gray-600">Отдел: {user?.department}</p>
         </div>
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Баланс баллов</CardTitle>
@@ -137,7 +137,7 @@ const Dashboard = () => {
       </Card>
 
       {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Последние операции</CardTitle>

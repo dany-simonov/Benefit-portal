@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 export function UserSettings() {
   const { logout } = useAuth();
@@ -92,7 +93,7 @@ export function UserSettings() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
         <div>
           <h1 className="text-2xl font-bold">Настройки</h1>
           <p className="text-gray-600">Управление параметрами аккаунта и приложения</p>
@@ -109,7 +110,7 @@ export function UserSettings() {
           <CardDescription>Настройте способы получения уведомлений</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-0.5">
               <Label>Email уведомления</Label>
               <p className="text-sm text-gray-600">Получать уведомления на почту</p>
@@ -120,7 +121,7 @@ export function UserSettings() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-0.5">
               <Label>Push уведомления</Label>
               <p className="text-sm text-gray-600">Браузерные уведомления</p>
@@ -159,7 +160,7 @@ export function UserSettings() {
           <CardDescription>Управление паролем и дополнительной защитой</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-0.5">
               <Label>Двухфакторная аутентификация</Label>
               <p className="text-sm text-gray-600">Дополнительная защита аккаунта</p>
@@ -259,7 +260,6 @@ export function UserSettings() {
           </div>
         </CardContent>
       </Card>
-
 
     </div>
   );

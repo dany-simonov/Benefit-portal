@@ -53,7 +53,7 @@ export function BenefitHistory() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
         <div>
           <h1 className="text-2xl font-bold">История льгот</h1>
           <p className="text-gray-600">Отслеживайте использование ваших корпоративных льгот</p>
@@ -70,7 +70,7 @@ export function BenefitHistory() {
           <CardDescription>Настройте отображение истории операций</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div className="space-y-2">
               <Label>Период</Label>
               <Select value={periodFilter} onValueChange={setPeriodFilter}>
@@ -128,7 +128,7 @@ export function BenefitHistory() {
       </Card>
 
       {/* Progress Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {benefitCategories.slice(0, 3).map((category) => {
           // Если есть лимит из БД — используем его
           const userLimit = allocations[category.id] ?? category.totalLimit;
@@ -165,7 +165,7 @@ export function BenefitHistory() {
           <CardTitle>История операций</CardTitle>
           <CardDescription>Детальная информация о всех операциях</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -173,8 +173,8 @@ export function BenefitHistory() {
                 <TableHead>Категория</TableHead>
                 <TableHead>Описание</TableHead>
                 <TableHead>Баллы</TableHead>
-                <TableHead>Сумма</TableHead>
-                <TableHead>Статус</TableHead>
+                <TableHead className="hidden sm:table-cell">Сумма</TableHead>
+                <TableHead className="hidden sm:table-cell">Статус</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -197,8 +197,8 @@ export function BenefitHistory() {
                     <TableCell className="text-red-600 font-medium">
                       -{formatNumber(transaction.points)}
                     </TableCell>
-                    <TableCell>{formatNumber(transaction.amount)} ₽</TableCell>
-                    <TableCell>
+                    <TableCell className="hidden sm:table-cell">{formatNumber(transaction.amount)} ₽</TableCell>
+                    <TableCell className="hidden sm:table-cell">
                       {getStatusBadge(transaction.status)}
                     </TableCell>
                   </TableRow>

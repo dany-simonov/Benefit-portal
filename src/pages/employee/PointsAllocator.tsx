@@ -56,7 +56,7 @@ const PointsAllocator = () => {
         <p className="text-gray-600">Отметьте категории, которые вас интересуют</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {benefitCategories.map((category) => (
           <Card 
             key={category.id}
@@ -114,17 +114,17 @@ const PointsAllocator = () => {
           <CardTitle>Баланс баллов</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex justify-between items-center mb-4">
-            <span>Доступно:</span>
-            <span className="font-bold text-2xl">{formatNumber(totalAvailable)}</span>
+          <div className="flex flex-col xxs:flex-row justify-between items-start xxs:items-center mb-4">
+            <span className="text-sm">Доступно:</span>
+            <span className="font-bold text-xl xxs:text-2xl">{formatNumber(totalAvailable)}</span>
           </div>
-          <div className="flex justify-between items-center mb-4">
-            <span>Распределено:</span>
-            <span className="font-bold text-blue-600">{formatNumber(totalAllocated)}</span>
+          <div className="flex flex-col xxs:flex-row justify-between items-start xxs:items-center mb-4">
+            <span className="text-sm">Распределено:</span>
+            <span className="font-bold text-blue-600 text-xl xxs:text-2xl">{formatNumber(totalAllocated)}</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span>Остаток:</span>
-            <span className={`font-bold text-2xl ${remaining < 0 ? 'text-red-600' : 'text-green-600'}`}>{formatNumber(remaining)}</span>
+          <div className="flex flex-col xxs:flex-row justify-between items-start xxs:items-center">
+            <span className="text-sm">Остаток:</span>
+            <span className={`font-bold text-xl xxs:text-2xl ${remaining < 0 ? 'text-red-600' : 'text-green-600'}`}>{formatNumber(remaining)}</span>
           </div>
           <Progress value={(totalAllocated / totalAvailable) * 100} className="mt-4" />
         </CardContent>
@@ -140,12 +140,12 @@ const PointsAllocator = () => {
             <Card key={categoryId}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center text-white text-xl`}>
+                  <div className={`w-10 h-10 xxs:w-12 xxs:h-12 ${category.color} rounded-lg flex items-center justify-center text-white text-lg xxs:text-xl`}>
                     {category.icon}
                   </div>
                   <div>
-                    <CardTitle>{category.name}</CardTitle>
-                    <CardDescription>
+                    <CardTitle className="text-base xxs:text-lg">{category.name}</CardTitle>
+                    <CardDescription className="text-xs xxs:text-sm">
                       Лимит: {formatNumber(category.totalLimit)} баллов
                     </CardDescription>
                   </div>
@@ -154,7 +154,7 @@ const PointsAllocator = () => {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label>Распределить баллов</Label>
+                    <Label className="text-sm xxs:text-base">Распределить баллов</Label>
                     <span className="text-sm font-medium">{formatNumber(currentAllocation)}</span>
                   </div>
                   <Slider
@@ -181,6 +181,7 @@ const PointsAllocator = () => {
                     variant="outline"
                     onClick={() => handleAllocationChange(categoryId, maxAllocation)}
                     disabled={maxAllocation === 0}
+                    size="sm"
                   >
                     Максимум
                   </Button>
@@ -235,9 +236,9 @@ const PointsAllocator = () => {
             })}
             
             <div className="border-t pt-4">
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-lg">Итого распределено:</span>
-                <span className="font-bold text-xl text-blue-600">
+              <div className="flex flex-col xxs:flex-row justify-between items-start xxs:items-center">
+                <span className="font-bold text-base xxs:text-lg">Итого распределено:</span>
+                <span className="font-bold text-lg xxs:text-xl text-blue-600">
                   {formatNumber(totalAllocated)} баллов
                 </span>
               </div>

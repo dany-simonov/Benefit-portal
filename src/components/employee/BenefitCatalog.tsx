@@ -41,7 +41,7 @@ export function BenefitCatalog() {
   return (
     <div className="space-y-6 px-6 md:px-12 pt-6 pb-20">
       {/* Заголовок */}
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold">Каталог льгот</h1>
           <p className="text-gray-600">Интуитивный каталог с фильтрами, поиском и рекомендациями</p>
@@ -68,7 +68,7 @@ export function BenefitCatalog() {
       </div>
 
       {/* Сводная статистика по активной категории */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 xxs:grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-2"><CardTitle className="text-sm">Количество льгот</CardTitle></CardHeader>
           <CardContent className="text-2xl font-bold">{activeTab === 'all' ? BENEFITS.length : categoryStats[activeTab].count}</CardContent>
@@ -80,7 +80,7 @@ export function BenefitCatalog() {
       </div>
 
       {/* Список льгот — компактные карточки */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map((item) => (
           <Card key={item.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="py-3">
@@ -125,7 +125,7 @@ export function BenefitCatalog() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <div className="font-semibold mb-1">Как пользоваться</div>
                 {selected.howTo.length ? (
@@ -156,7 +156,7 @@ export function BenefitCatalog() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 text-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 text-center">
               <div>
                 <div className="text-xs text-gray-500">Партнёров</div>
                 <div className="font-semibold">{formatNumber(selected.stats.partners || 0)}</div>

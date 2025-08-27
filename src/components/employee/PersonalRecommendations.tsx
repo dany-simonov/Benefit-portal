@@ -158,7 +158,7 @@ export function PersonalRecommendations() {
           <CardDescription>Настройте отображение рекомендаций</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Категория</label>
               <Select value={filters.category} onValueChange={(value) => setFilters(prev => ({ ...prev, category: value }))}>
@@ -224,7 +224,7 @@ export function PersonalRecommendations() {
       </Card>
 
       {/* Рекомендации */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRecommendations.slice(0, 6).map((rec) => {
           const category = benefitCategories.find(c => c.id === rec.categoryId);
           
