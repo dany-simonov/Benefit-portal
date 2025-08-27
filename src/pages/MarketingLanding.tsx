@@ -16,8 +16,8 @@ const MarketingLanding = () => {
               <div className="w-8 h-8 bg-gradient-to-br from-[#6AFCBA] to-[#B6D9FC] rounded-lg flex items-center justify-center text-white font-bold">
                 B
               </div>
-              <h1 className="text-xl font-bold">Benefit Admin AI</h1>
-            </div>
+              <h1 className="text-xl font-bold">Benefit Admin</h1>
+          </div>
             <div className="flex space-x-4">
               <Button variant="outline" onClick={() => navigate('/login')}>
                 Войти
@@ -38,7 +38,7 @@ const MarketingLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Управление корпоративными
-            <span className="text-blue-600"> льготами</span>
+            <span className="text-gray-900"> льготами</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Современная платформа для HR-менеджеров и сотрудников. 
@@ -52,8 +52,8 @@ const MarketingLanding = () => {
             >
               Начать работу
             </Button>
-            <Button variant="outline" size="lg" onClick={() => navigate('/about')}>
-              Узнать больше
+            <Button variant="outline" size="lg" onClick={() => navigate('/demo')}>
+              Посмотреть демо
             </Button>
           </div>
         </div>
@@ -125,25 +125,7 @@ const MarketingLanding = () => {
             </Card>
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-[#6AFCBA] to-[#B6D9FC] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Готовы начать?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Попробуйте Benefit Admin AI прямо сейчас
-          </p>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="bg-[#82C4F8] text-white hover:bg-[#1D92C5]"
-            onClick={() => navigate('/login')}
-          >
-            Войти в систему
-          </Button>
-        </div>
-      </section>
+      </section>      
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
@@ -153,10 +135,10 @@ const MarketingLanding = () => {
               <div className="w-8 h-8 bg-gradient-to-br from-[#6AFCBA] to-[#B6D9FC] rounded-lg flex items-center justify-center text-white font-bold">
                 B
               </div>
-              <span className="font-semibold">Benefit Admin AI</span>
+              <span className="font-semibold">Benefit Admin</span>
             </div>
             <div className="text-sm text-gray-400">
-              © 2025 Benefit Admin AI. Все права защищены.
+              © 2025 Benefit Admin. Все права защищены.
             </div>
           </div>
         </div>
