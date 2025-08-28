@@ -51,7 +51,7 @@ const Auth = () => {
           <div className="w-16 h-16 bg-gradient-to-br from-[#6AFCBA] to-[#B6D9FC] rounded-xl flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4">
             B
           </div>
-          <h1 className="text-2xl font-bold">Benefit Admin AI</h1>
+          <h1 className="text-2xl font-bold">Benefit Admin</h1>
           <p className="text-gray-600">Войдите в систему</p>
         </div>
 

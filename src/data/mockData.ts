@@ -7,41 +7,51 @@ export const benefitCategories: BenefitCategory[] = [
     icon: '🏥',
     description: 'Добровольное медицинское страхование',
     color: 'bg-gradient-to-br from-red-500 to-red-600',
-    totalLimit: 50000,
-    usedPoints: 15000,
-    providers: [
-      {
-        id: 'sogaz',
-        name: 'СОГАЗ-Мед',
-        category: 'dms',
-        description: 'Полис ДМС с широкой сетью клиник',
-        logo: '/placeholder.svg',
-        pointsRate: 1,
-        minPoints: 5000,
-        maxPoints: 50000
-      }
-    ]
+    totalLimit: 40000,
+    usedPoints: 0,
+    providers: [{ id: 'sogaz', name: 'СОГАЗ-Мед', category: 'dms', description: 'Полис ДМС с широкой сетью клиник', logo: '/placeholder.svg', pointsRate: 1, minPoints: 5000, maxPoints: 40000 }],
+    partnerType: 'партнеров'
   },
   {
-    id: 'shopping',
-    name: 'Покупка товаров',
+    id: 'psychology',
+    name: 'Сервис по психологии (в разработке)',
+    icon: '🧠',
+    description: 'Психологическая поддержка',
+    color: 'bg-gradient-to-br from-gray-400 to-gray-500',
+    totalLimit: 0,
+    usedPoints: 0,
+    providers: [],
+    disabled: true,
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'yandex-go',
+    name: 'Яндекс Go (еда, продукты и товары)',
     icon: '🛒',
-    description: 'Покупка и доставка товаров из магазинов',
+    description: 'Доставка еды, продуктов и товаров',
     color: 'bg-gradient-to-br from-purple-500 to-purple-600',
-    totalLimit: 25000,
-    usedPoints: 8000,
+    totalLimit: 20000,
+    usedPoints: 0,
     providers: [
-      {
-        id: 'ozon',
-        name: 'Ozon',
-        category: 'shopping',
-        description: 'Интернет-магазин товаров',
-        logo: '/placeholder.svg',
-        pointsRate: 1.5,
-        minPoints: 500,
-        maxPoints: 10000
-      }
-    ]
+        { id: 'yandex-go-provider-1', name: 'Яндекс Go', category: 'yandex-go', description: 'Доставка еды, продуктов и товаров', logo: '/placeholder.svg', pointsRate: 1, minPoints: 500, maxPoints: 20000 },
+        { id: 'yandex-go-provider-2', name: 'Яндекс Go', category: 'yandex-go', description: 'Доставка еды, продуктов и товаров', logo: '/placeholder.svg', pointsRate: 1, minPoints: 500, maxPoints: 20000 }
+    ],
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'smartway',
+    name: 'Smartway (билеты, отели, ЖД)',
+    icon: '✈️',
+    description: 'Бронирование билетов и отелей',
+    color: 'bg-gradient-to-br from-sky-500 to-sky-600',
+    totalLimit: 40000,
+    usedPoints: 0,
+    providers: [
+        { id: 'smartway-provider-1', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 },
+        { id: 'smartway-provider-2', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 },
+        { id: 'smartway-provider-3', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 }
+    ],
+    partnerType: 'партнеров'
   },
   {
     id: 'carsharing',
@@ -50,19 +60,12 @@ export const benefitCategories: BenefitCategory[] = [
     description: 'Аренда автомобилей',
     color: 'bg-gradient-to-br from-blue-500 to-blue-600',
     totalLimit: 20000,
-    usedPoints: 12000,
+    usedPoints: 0,
     providers: [
-      {
-        id: 'yandex-drive',
-        name: 'Яндекс.Драйв',
-        category: 'carsharing',
-        description: 'Каршеринг в городе',
-        logo: '/placeholder.svg',
-        pointsRate: 2,
-        minPoints: 200,
-        maxPoints: 5000
-      }
-    ]
+        { id: 'belkacar', name: 'BelkaCar', category: 'carsharing', description: 'Каршеринг', logo: '/placeholder.svg', pointsRate: 1, minPoints: 200, maxPoints: 5000 },
+        { id: 'yandex-drive', name: 'Яндекс.Драйв', category: 'carsharing', description: 'Каршеринг', logo: '/placeholder.svg', pointsRate: 1, minPoints: 200, maxPoints: 5000 }
+    ],
+    partnerType: 'партнеров'
   },
   {
     id: 'taxi',
@@ -71,61 +74,25 @@ export const benefitCategories: BenefitCategory[] = [
     description: 'Поездки на такси',
     color: 'bg-gradient-to-br from-yellow-500 to-yellow-600',
     totalLimit: 15000,
-    usedPoints: 8500,
+    usedPoints: 0,
     providers: [
-      {
-        id: 'yandex-taxi',
-        name: 'Яндекс.Такси',
-        category: 'taxi',
-        description: 'Поездки по городу',
-        logo: '/placeholder.svg',
-        pointsRate: 2,
-        minPoints: 100,
-        maxPoints: 3000
-      }
-    ]
+        { id: 'yandex-go-taxi', name: 'Яндекс Go', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 },
+        { id: 'bibi', name: 'BiBi', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 },
+        { id: 'swiftdrive', name: 'SwiftDrive', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 }
+    ],
+    partnerType: 'партнеров'
   },
   {
-    id: 'travel',
-    name: 'Авиа и ЖД билеты',
-    icon: '✈️',
-    description: 'Покупка авиа- и ж/д билетов',
-    color: 'bg-gradient-to-br from-sky-500 to-sky-600',
-    totalLimit: 40000,
-    usedPoints: 5000,
-    providers: [
-      {
-        id: 'rzd',
-        name: 'РЖД',
-        category: 'travel',
-        description: 'Железнодорожные билеты',
-        logo: '/placeholder.svg',
-        pointsRate: 1,
-        minPoints: 1000,
-        maxPoints: 20000
-      }
-    ]
-  },
-  {
-    id: 'hotels',
-    name: 'Бронирование гостиниц',
-    icon: '🏨',
-    description: 'Бронирование отелей и гостиниц',
-    color: 'bg-gradient-to-br from-pink-500 to-pink-600',
-    totalLimit: 35000,
-    usedPoints: 2000,
-    providers: [
-      {
-        id: 'booking',
-        name: 'Booking.com',
-        category: 'hotels',
-        description: 'Бронирование отелей',
-        logo: '/placeholder.svg',
-        pointsRate: 1,
-        minPoints: 2000,
-        maxPoints: 15000
-      }
-    ]
+    id: 'fuel-cards',
+    name: 'Топливные карты',
+    icon: '⛽',
+    description: 'Заправка топливом на АЗС',
+    color: 'bg-gradient-to-br from-emerald-500 to-emerald-600',
+    totalLimit: 30000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'точек',
+    partnerCount: 18500
   },
   {
     id: 'gas-station-goods',
@@ -134,19 +101,22 @@ export const benefitCategories: BenefitCategory[] = [
     description: 'Автомасла, автохимия, незамерзайка',
     color: 'bg-gradient-to-br from-gray-500 to-gray-600',
     totalLimit: 12000,
-    usedPoints: 3500,
-    providers: [
-      {
-        id: 'lukoil-shop',
-        name: 'ЛУКОЙЛ Магазин',
-        category: 'gas-station-goods',
-        description: 'Товары на АЗС ЛУКОЙЛ',
-        logo: '/placeholder.svg',
-        pointsRate: 1.5,
-        minPoints: 300,
-        maxPoints: 5000
-      }
-    ]
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'точек',
+    partnerCount: 18000
+  },
+  {
+    id: 'car-wash',
+    name: 'Мойки',
+    icon: '🚿',
+    description: 'Автомойка',
+    color: 'bg-gradient-to-br from-cyan-500 to-cyan-600',
+    totalLimit: 6000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'точек',
+    partnerCount: 1200
   },
   {
     id: 'tire-service',
@@ -155,92 +125,22 @@ export const benefitCategories: BenefitCategory[] = [
     description: 'Услуги шиномонтажа',
     color: 'bg-gradient-to-br from-orange-500 to-orange-600',
     totalLimit: 8000,
-    usedPoints: 1500,
-    providers: [
-      {
-        id: 'tire-master',
-        name: 'ШиноМастер',
-        category: 'tire-service',
-        description: 'Профессиональный шиномонтаж',
-        logo: '/placeholder.svg',
-        pointsRate: 1,
-        minPoints: 500,
-        maxPoints: 3000
-      }
-    ]
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'точек',
+    partnerCount: 700
   },
   {
-    id: 'car-wash',
-    name: 'Мойка',
-    icon: '🚿',
-    description: 'Автомойка',
-    color: 'bg-gradient-to-br from-cyan-500 to-cyan-600',
-    totalLimit: 6000,
-    usedPoints: 2200,
-    providers: [
-      {
-        id: 'clean-car',
-        name: 'CleanCar',
-        category: 'car-wash',
-        description: 'Автомойка премиум класса',
-        logo: '/placeholder.svg',
-        pointsRate: 2,
-        minPoints: 200,
-        maxPoints: 1500
-      }
-    ]
-  },
-  {
-    id: 'fuel',
-    name: 'Топливо',
-    icon: '⛽',
-    description: 'Заправка топливом на АЗС',
-    color: 'bg-gradient-to-br from-emerald-500 to-emerald-600',
-    totalLimit: 30000,
-    usedPoints: 18000,
-    providers: [
-      {
-        id: 'rosneft',
-        name: 'Роснефть',
-        category: 'fuel',
-        description: 'Сеть АЗС Роснефть',
-        logo: '/placeholder.svg',
-        pointsRate: 1,
-        minPoints: 500,
-        maxPoints: 10000
-      }
-    ]
-  },
-  {
-    id: 'food',
-    name: 'Питание',
-    icon: '🍽️',
-    description: 'Доставка продуктов и готовой еды',
-    color: 'bg-gradient-to-br from-green-500 to-green-600',
-    totalLimit: 20000,
-    usedPoints: 12000,
-    providers: [
-      {
-        id: 'delivery-club',
-        name: 'Delivery Club',
-        category: 'food',
-        description: 'Доставка еды',
-        logo: '/placeholder.svg',
-        pointsRate: 1.5,
-        minPoints: 200,
-        maxPoints: 3000
-      },
-      {
-        id: 'perekrestok',
-        name: 'Перекрёсток',
-        category: 'food',
-        description: 'Доставка продуктов',
-        logo: '/placeholder.svg',
-        pointsRate: 1,
-        minPoints: 500,
-        maxPoints: 5000
-      }
-    ]
+    id: 'languages',
+    name: 'Языки (в разработке)',
+    icon: '📚',
+    description: 'Изучение иностранных языков',
+    color: 'bg-gradient-to-br from-gray-400 to-gray-500',
+    totalLimit: 0,
+    usedPoints: 0,
+    providers: [],
+    disabled: true,
+    partnerType: 'партнеров'
   }
 ];
 

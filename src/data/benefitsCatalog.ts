@@ -9,12 +9,14 @@ export interface BenefitItem {
   howTo: string[];
   advantages: string[];
   limitations: string[];
-  stats: {
+    stats: {
     limit?: number;
     used?: number;
     available?: number;
     partners?: number;
+    partnerCount?: number;
   };
+  partnerType?: string;
   status?: 'active' | 'planned';
 }
 
@@ -54,6 +56,7 @@ export const BENEFITS: BenefitItem[] = [
       'Точный перечень услуг — в условиях страхования',
     ],
     stats: { partners: 1 },
+    partnerType: 'партнеров'
   },
   {
     id: 'psychology',
@@ -64,8 +67,9 @@ export const BENEFITS: BenefitItem[] = [
     howTo: [],
     advantages: [],
     limitations: [],
-    stats: {},
+    stats: { partners: 0 },
     status: 'planned',
+    partnerType: 'партнеров'
   },
 
   // Продукты
@@ -87,6 +91,7 @@ export const BENEFITS: BenefitItem[] = [
       'Отдельные категории могут иметь свои правила',
     ],
     stats: { partners: 2 },
+    partnerType: 'партнеров'
   },
 
   // Путешествия
@@ -116,6 +121,7 @@ export const BENEFITS: BenefitItem[] = [
       'Удержание разницы из зарплаты — если предусмотрено правилами компании',
     ],
     stats: { partners: 3 },
+    partnerType: 'партнеров'
   },
 
   // Передвижение
@@ -142,6 +148,7 @@ export const BENEFITS: BenefitItem[] = [
       'Корпоративные лимиты могут ограничивать стоимость и частоту',
     ],
     stats: { partners: 2 },
+    partnerType: 'партнеров'
   },
   {
     id: 'taxi',
@@ -162,6 +169,7 @@ export const BENEFITS: BenefitItem[] = [
     ],
     limitations: ['Доступно в городах партнёров', 'При превышении лимитов доплачивает сотрудник'],
     stats: { partners: 3 },
+    partnerType: 'партнеров'
   },
 
   // Автомобиль
@@ -188,6 +196,7 @@ export const BENEFITS: BenefitItem[] = [
       'Карта работает только с единым корпоративным счётом',
     ],
     stats: { partners: 18500 },
+    partnerType: 'точек'
   },
   {
     id: 'gas-station-goods',
@@ -207,6 +216,7 @@ export const BENEFITS: BenefitItem[] = [
       'Лимиты по сумме и категориям — по правилам компании',
     ],
     stats: { partners: 18000 },
+    partnerType: 'точек'
   },
   {
     id: 'car-wash',
@@ -223,6 +233,7 @@ export const BENEFITS: BenefitItem[] = [
     advantages: ['1200+ точек по РФ', 'Прозрачная история оплат'],
     limitations: ['Оплата только картой ППР', 'Точки должны поддерживать карту ППР'],
     stats: { partners: 1200 },
+    partnerType: 'точек'
   },
   {
     id: 'tire-service',
@@ -242,6 +253,7 @@ export const BENEFITS: BenefitItem[] = [
       'Для выездного шиномонтажа нужна предварительная запись',
     ],
     stats: { partners: 700 },
+    partnerType: 'точек'
   },
 
   // Образование
@@ -254,7 +266,8 @@ export const BENEFITS: BenefitItem[] = [
     howTo: [],
     advantages: [],
     limitations: [],
-    stats: {},
+    stats: { partners: 0 },
     status: 'planned',
+    partnerType: 'партнеров'
   },
 ];

@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <div className="p-6 space-y-6">
       {/* Page Header */}
-      <div className="flex flex-col xxs:flex-row gap-4 items-center mb-4">
+      <div className="flex flex-col xxs:flex-row gap-4 items-start mb-4">
         <img src={user?.avatar} alt="avatar" className="w-16 h-16 xxs:w-20 xxs:h-20 rounded-full border" />
         <div>
           <h1 className="text-xl xxs:text-2xl font-bold">Добро пожаловать, {user?.name}! 👋</h1>
@@ -210,7 +210,7 @@ const Dashboard = () => {
 
       <div className="flex items-center gap-4 cursor-pointer mb-6" onClick={() => navigate('/') }>
         <div className="w-8 h-8 bg-gradient-to-br from-[#6AFCBA] to-[#B6D9FC] rounded-lg flex items-center justify-center text-white font-bold">B</div>
-        <span className="text-xl font-bold">Benefit Admin AI</span>
+        <span className="text-xl font-bold">Benefit Admin</span>
       </div>
     </div>
   );

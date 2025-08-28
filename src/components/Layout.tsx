@@ -56,7 +56,7 @@ export function Layout({ children, activeTab = 'dashboard', onTabChange }: Layou
                 B
               </div>
               <div>
-                <h1 className="text-xl font-bold">Benefit Admin AI</h1>
+                <h1 className="text-xl font-bold">Benefit Admin</h1>
                 <p className="text-xs text-gray-500">{user.department}</p>
               </div>
             </div>

@@ -60,7 +60,7 @@ export function UserProfile() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-4 sm:px-6 sm:py-6">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold">Мой профиль</h1>

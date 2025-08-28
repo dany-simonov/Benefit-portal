@@ -18,6 +18,9 @@ export interface BenefitCategory {
   totalLimit: number;
   usedPoints: number;
   providers: BenefitProvider[];
+  disabled?: boolean;
+  partnerType?: string;
+  partnerCount?: number;
 }
 
 export interface BenefitProvider {

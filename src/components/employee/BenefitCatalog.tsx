@@ -157,10 +157,8 @@ export function BenefitCatalog() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 text-center">
-              <div>
-                <div className="text-xs text-gray-500">Партнёров</div>
+              <div className="text-xs text-gray-500">{selected.partnerType === 'точек' ? 'Точек' : 'Партнёров'}</div>
                 <div className="font-semibold">{formatNumber(selected.stats.partners || 0)}</div>
-              </div>
               {typeof selected.stats.limit === 'number' && (
                 <div>
                   <div className="text-xs text-gray-500">Лимит</div>
@@ -183,9 +181,6 @@ export function BenefitCatalog() {
           </div>
         </div>
       )}
-
-      {/* Рекомендуемые льготы — по требованию можно вернуть */}
-      {/* ...закомментировано пользователем... */}
     </div>
   );
 }

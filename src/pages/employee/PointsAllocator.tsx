@@ -81,7 +81,7 @@ const PointsAllocator = () => {
             <CardContent>
               <p className="text-sm text-gray-600">{category.description}</p>
               <Badge variant="outline" className="mt-2">
-                {category.providers.length} партнеров
+                {category.partnerCount ? category.partnerCount : category.providers.length} {category.partnerType || 'партнеров'}
               </Badge>
             </CardContent>
           </Card>

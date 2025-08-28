@@ -52,7 +52,7 @@ export function BenefitHistory() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-4 sm:px-6 sm:py-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
         <div>
           <h1 className="text-2xl font-bold">История льгот</h1>
