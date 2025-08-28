@@ -209,54 +209,7 @@ export function BenefitHistory() {
         </CardContent>
       </Card>
 
-      {/* Timeline View (Optional) */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Временная шкала</CardTitle>
-          <CardDescription>Визуальное представление истории операций</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {recentTransactions.map((transaction, index) => {
-              const category = benefitCategories.find(c => c.id === transaction.categoryId);
-              // Если есть лимит из БД — используем его
-              const userLimit = allocations[category?.id ?? ''] ?? category?.totalLimit;
-              return (
-                <div key={transaction.id} className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <span className="text-lg">{category?.icon}</span>
-                    </div>
-                    {index < recentTransactions.length - 1 && (
-                      <div className="w-px h-6 bg-gray-200 ml-5 mt-2"></div>
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-medium text-gray-900">
-                        {transaction.description}
-                      </h4>
-                      <span className="text-sm text-gray-500">
-                        {transaction.date.toLocaleDateString('ru-RU')}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600">{category?.name}</p>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <span className="text-sm font-medium text-red-600">
-                        -{formatNumber(transaction.points)} баллов
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        ({formatNumber(transaction.amount)} ₽)
-                      </span>
-                      {getStatusBadge(transaction.status)}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
+      
     </div>
   );
 }

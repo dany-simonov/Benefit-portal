@@ -146,13 +146,13 @@ export const benefitCategories: BenefitCategory[] = [
 
 export const userAllocations: UserBenefitAllocation[] = [
   {
-    categoryId: 'fuel',
+    categoryId: 'fuel-cards',
     allocatedPoints: 15000,
     usedPoints: 8000,
     lastUpdated: new Date()
   },
   {
-    categoryId: 'food',
+    categoryId: 'yandex-go',
     allocatedPoints: 12000,
     usedPoints: 9000,
     lastUpdated: new Date()
@@ -184,17 +184,6 @@ export const recentTransactions: Transaction[] = [
     status: 'completed',
   },
   {
-    id: '2',
-    userId: '1',
-    categoryId: 'shopping',
-    providerId: 'ozon',
-    description: 'Покупка на Ozon',
-    date: new Date('2024-05-28'),
-    points: 2000,
-    amount: 3000,
-    status: 'completed',
-  },
-  {
     id: '3',
     userId: '1',
     categoryId: 'carsharing',
@@ -214,28 +203,6 @@ export const recentTransactions: Transaction[] = [
     date: new Date('2024-05-22'),
     points: 800,
     amount: 900,
-    status: 'completed',
-  },
-  {
-    id: '5',
-    userId: '1',
-    categoryId: 'travel',
-    providerId: 'rzd',
-    description: 'Покупка ЖД билета',
-    date: new Date('2024-05-18'),
-    points: 3000,
-    amount: 3500,
-    status: 'completed',
-  },
-  {
-    id: '6',
-    userId: '1',
-    categoryId: 'hotels',
-    providerId: 'booking',
-    description: 'Бронирование отеля',
-    date: new Date('2024-05-15'),
-    points: 2500,
-    amount: 4000,
     status: 'completed',
   },
   {
@@ -274,24 +241,13 @@ export const recentTransactions: Transaction[] = [
   {
     id: '10',
     userId: '1',
-    categoryId: 'fuel',
+    categoryId: 'fuel-cards',
     providerId: 'lukoil-shop',
     description: 'Заправка топливом',
     date: new Date('2024-05-04'),
     points: 1500,
     amount: 1800,
     status: 'completed',
-  },
-  {
-    id: '21',
-    userId: '1',
-    categoryId: 'shopping',
-    providerId: 'ozon',
-    description: 'Покупка на Ozon (ожидание)',
-    date: new Date('2024-06-02'),
-    points: 1500,
-    amount: 2200,
-    status: 'pending',
   },
   {
     id: '22',
@@ -327,37 +283,15 @@ export const recentTransactions: Transaction[] = [
     status: 'failed',
   },
   {
-    id: '25',
-    userId: '1',
-    categoryId: 'hotels',
-    providerId: 'booking',
-    description: 'Бронирование отеля (ожидание)',
-    date: new Date('2024-05-26'),
-    points: 2500,
-    amount: 4000,
-    status: 'pending',
-  },
-  {
     id: '26',
     userId: '1',
-    categoryId: 'fuel',
+    categoryId: 'fuel-cards',
     providerId: 'lukoil-shop',
     description: 'Заправка топливом (отклонено)',
     date: new Date('2024-05-24'),
     points: 1200,
     amount: 1500,
     status: 'failed',
-  },
-  {
-    id: '27',
-    userId: '1',
-    categoryId: 'travel',
-    providerId: 'rzd',
-    description: 'Покупка билета (ожидание)',
-    date: new Date('2024-05-21'),
-    points: 3500,
-    amount: 4000,
-    status: 'pending',
   },
   {
     id: '28',
@@ -411,7 +345,7 @@ export interface PurchaseHistory {
 export const mockPurchaseHistory: PurchaseHistory[] = [
   {
     id: '1',
-    categoryId: 'transport',
+    categoryId: 'taxi',
     benefitName: 'Такси',
     amount: 2500,
     points: 2500,
@@ -423,7 +357,7 @@ export const mockPurchaseHistory: PurchaseHistory[] = [
   },
   {
     id: '2',
-    categoryId: 'food',
+    categoryId: 'yandex-go',
     benefitName: 'Обеды в офисе',
     amount: 1800,
     points: 1800,
@@ -435,7 +369,7 @@ export const mockPurchaseHistory: PurchaseHistory[] = [
   },
   {
     id: '3',
-    categoryId: 'transport',
+    categoryId: 'fuel-cards',
     benefitName: 'Топливо',
     amount: 5000,
     points: 5000,
@@ -447,7 +381,7 @@ export const mockPurchaseHistory: PurchaseHistory[] = [
   },
   {
     id: '4',
-    categoryId: 'health',
+    categoryId: 'dms',
     benefitName: 'Массаж',
     amount: 3000,
     points: 3000,
@@ -459,7 +393,7 @@ export const mockPurchaseHistory: PurchaseHistory[] = [
   },
   {
     id: '5',
-    categoryId: 'education',
+    categoryId: 'languages',
     benefitName: 'Онлайн курсы',
     amount: 15000,
     points: 15000,
@@ -497,7 +431,7 @@ export const mockRecommendations: Recommendation[] = [
   {
     id: '1',
     type: 'frequent',
-    categoryId: 'transport',
+    categoryId: 'taxi',
     title: 'Такси - ваша любимая льгота',
     description: 'Вы часто используете такси. Попробуйте премиум-тариф для большего комфорта.',
     confidence: 95,
@@ -513,7 +447,7 @@ export const mockRecommendations: Recommendation[] = [
   {
     id: '2',
     type: 'department',
-    categoryId: 'food',
+    categoryId: 'yandex-go',
     title: 'Популярно в вашем отделе',
     description: '85% ваших коллег используют доставку обедов. Присоединяйтесь!',
     confidence: 87,
@@ -529,7 +463,7 @@ export const mockRecommendations: Recommendation[] = [
   {
     id: '3',
     type: 'new',
-    categoryId: 'entertainment',
+    categoryId: 'smartway',
     title: 'Новое предложение - кинотеатр',
     description: 'Вы еще не пробовали льготы развлечений. Специальное предложение!',
     confidence: 78,
@@ -544,7 +478,7 @@ export const mockRecommendations: Recommendation[] = [
   {
     id: '4',
     type: 'seasonal',
-    categoryId: 'health',
+    categoryId: 'dms',
     title: 'Зимняя забота о здоровье',
     description: 'В холодное время года особенно важно укреплять иммунитет.',
     confidence: 82,
@@ -559,7 +493,7 @@ export const mockRecommendations: Recommendation[] = [
   {
     id: '5',
     type: 'budget',
-    categoryId: 'education',
+    categoryId: 'languages',
     title: 'Экономьте баллы на обучении',
     description: 'У вас осталось много баллов. Инвестируйте в свое развитие!',
     confidence: 91,
