@@ -25,6 +25,8 @@ export function BenefitCatalog() {
     const map: Record<BenefitCategoryKey, { count: number; partners: number }> = {
       all: { count: BENEFITS.length, partners: BENEFITS.reduce((s, b) => s + (b.stats.partners || 0), 0) },
       health: { count: 0, partners: 0 },
+      mindfulness: { count: 0, partners: 0 },
+      adulthood: { count: 0, partners: 0 },
       products: { count: 0, partners: 0 },
       travel: { count: 0, partners: 0 },
       mobility: { count: 0, partners: 0 },
@@ -32,8 +34,10 @@ export function BenefitCatalog() {
       education: { count: 0, partners: 0 },
     };
     for (const b of BENEFITS) {
-      map[b.category].count += 1;
-      map[b.category].partners += b.stats.partners || 0;
+      if (map[b.category]) {
+        map[b.category].count += 1;
+        map[b.category].partners += b.stats.partners || 0;
+      }
     }
     return map;
   }, []);
