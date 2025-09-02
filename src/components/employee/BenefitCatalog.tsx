@@ -3,9 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CATEGORY_TABS, BENEFITS, type BenefitCategoryKey, type BenefitItem } from '@/data/benefitsCatalog';
 import { formatNumber } from '@/lib/utils';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export function BenefitCatalog() {
   const [activeTab, setActiveTab] = useState<BenefitCategoryKey>('all');
@@ -55,31 +55,29 @@ export function BenefitCatalog() {
         </div>
       </div>
 
-      {/* Вкладки категорий — сдвинуты влево с небольшим отступом */}
-      <div className="pl-2">
-        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as BenefitCategoryKey)}>
-          <TabsList className="flex flex-wrap gap-2">
-            {CATEGORY_TABS.map(t => (
-              <TabsTrigger key={t.key} value={t.key} className="capitalize">
-                {t.title}
-                <Badge variant="secondary" className="ml-2">
-                  {categoryStats[t.key].count}
-                </Badge>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-      </div>
+      {/* Вкладки категорий */}
+      <Select value={activeTab} onValueChange={(v) => setActiveTab(v as BenefitCategoryKey)}>
+        <SelectTrigger>
+          <SelectValue placeholder="Выберите категорию" />
+        </SelectTrigger>
+        <SelectContent>
+          {CATEGORY_TABS.map(t => (
+            <SelectItem key={t.key} value={t.key}>
+              {t.title} ({categoryStats[t.key]?.count ?? 0})
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
       {/* Сводная статистика по активной категории */}
       <div className="grid grid-cols-1 xxs:grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-2"><CardTitle className="text-sm">Количество льгот</CardTitle></CardHeader>
-          <CardContent className="text-2xl font-bold">{activeTab === 'all' ? BENEFITS.length : categoryStats[activeTab].count}</CardContent>
+          <CardContent className="text-2xl font-bold">{activeTab === 'all' ? BENEFITS.length : categoryStats[activeTab]?.count ?? 0}</CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-2"><CardTitle className="text-sm">Партнёров</CardTitle></CardHeader>
-          <CardContent className="text-2xl font-bold">{activeTab === 'all' ? categoryStats.all.partners : categoryStats[activeTab].partners}</CardContent>
+          <CardContent className="text-2xl font-bold">{activeTab === 'all' ? categoryStats.all.partners : categoryStats[activeTab]?.partners ?? 0}</CardContent>
         </Card>
       </div>
 
