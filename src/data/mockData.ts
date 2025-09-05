@@ -2,171 +2,6 @@ import { BenefitCategory, Transaction, UserBenefitAllocation } from '@/types';
 
 export const benefitCategories: BenefitCategory[] = [
   {
-    id: 'dms',
-    name: 'ДМС',
-    icon: '🏥',
-    description: 'Добровольное медицинское страхование',
-    color: 'bg-gradient-to-br from-red-500 to-red-600',
-    totalLimit: 40000,
-    usedPoints: 0,
-    providers: [{ id: 'sogaz', name: 'СОГАЗ-Мед', category: 'dms', description: 'Полис ДМС с широкой сетью клиник', logo: '/placeholder.svg', pointsRate: 1, minPoints: 5000, maxPoints: 40000 }],
-    partnerType: 'партнеров'
-  },
-  {
-    id: 'fitness-coach',
-    name: 'Консультация с фитнес-тренером',
-    icon: '🏋️',
-    description: 'Персональные тренировки для здоровья и прогресса.',
-    color: 'bg-gradient-to-br from-lime-500 to-lime-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'healthy-lifestyle',
-    name: 'Консультация по ЗОЖ',
-    icon: '🥗',
-    description: 'Рекомендации по питанию, активности и профилактике.',
-    color: 'bg-gradient-to-br from-green-500 to-green-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'mindfulness-coach',
-    name: 'Консультация по практикам осознанности',
-    icon: '🧘',
-    description: 'Навыки концентрации и стрессоустойчивости.',
-    color: 'bg-gradient-to-br from-teal-500 to-teal-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'sex-expert',
-    name: 'Консультация по сексуальным отношениям',
-    icon: '❤️',
-    description: 'Поддержка и советы по вопросам интимной жизни.',
-    color: 'bg-gradient-to-br from-rose-500 to-rose-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'icf-coach',
-    name: 'Сессия с коучем (ICF)',
-    icon: '🎯',
-    description: 'Помощь в достижении целей и развитию навыков.',
-    color: 'bg-gradient-to-br from-cyan-500 to-cyan-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'pet-care',
-    name: 'Консультация по уходу за питомцем',
-    icon: '🐾',
-    description: 'Советы по воспитанию и заботе о животном.',
-    color: 'bg-gradient-to-br from-amber-500 to-amber-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'lawyer',
-    name: 'Консультация юриста',
-    icon: '⚖️',
-    description: 'Юридическая помощь в личных вопросах.',
-    color: 'bg-gradient-to-br from-stone-500 to-stone-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'finance-expert',
-    name: 'Консультация по личным финансам',
-    icon: '💰',
-    description: 'Поддержка и советы по управлению финансами.',
-    color: 'bg-gradient-to-br from-emerald-500 to-emerald-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [],
-    partnerType: 'партнеров',
-    partnerCount: 1
-  },
-  {
-    id: 'yandex-go',
-    name: 'Яндекс Go (еда, продукты и товары)',
-    icon: '🛒',
-    description: 'Доставка еды, продуктов и товаров',
-    color: 'bg-gradient-to-br from-purple-500 to-purple-600',
-    totalLimit: 20000,
-    usedPoints: 0,
-    providers: [
-        { id: 'yandex-go-provider-1', name: 'Яндекс Go', category: 'yandex-go', description: 'Доставка еды, продуктов и товаров', logo: '/placeholder.svg', pointsRate: 1, minPoints: 500, maxPoints: 20000 },
-        { id: 'yandex-go-provider-2', name: 'Яндекс Go', category: 'yandex-go', description: 'Доставка еды, продуктов и товаров', logo: '/placeholder.svg', pointsRate: 1, minPoints: 500, maxPoints: 20000 }
-    ],
-    partnerType: 'партнеров'
-  },
-  {
-    id: 'smartway',
-    name: 'Smartway (билеты, отели, ЖД)',
-    icon: '✈️',
-    description: 'Бронирование билетов и отелей',
-    color: 'bg-gradient-to-br from-sky-500 to-sky-600',
-    totalLimit: 40000,
-    usedPoints: 0,
-    providers: [
-        { id: 'smartway-provider-1', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 },
-        { id: 'smartway-provider-2', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 },
-        { id: 'smartway-provider-3', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 }
-    ],
-    partnerType: 'партнеров'
-  },
-  {
-    id: 'carsharing',
-    name: 'Каршеринг',
-    icon: '🚗',
-    description: 'Аренда автомобилей',
-    color: 'bg-gradient-to-br from-blue-500 to-blue-600',
-    totalLimit: 20000,
-    usedPoints: 0,
-    providers: [
-        { id: 'belkacar', name: 'BelkaCar', category: 'carsharing', description: 'Каршеринг', logo: '/placeholder.svg', pointsRate: 1, minPoints: 200, maxPoints: 5000 },
-        { id: 'yandex-drive', name: 'Яндекс.Драйв', category: 'carsharing', description: 'Каршеринг', logo: '/placeholder.svg', pointsRate: 1, minPoints: 200, maxPoints: 5000 }
-    ],
-    partnerType: 'партнеров'
-  },
-  {
-    id: 'taxi',
-    name: 'Такси',
-    icon: '🚕',
-    description: 'Поездки на такси',
-    color: 'bg-gradient-to-br from-yellow-500 to-yellow-600',
-    totalLimit: 15000,
-    usedPoints: 0,
-    providers: [
-        { id: 'yandex-go-taxi', name: 'Яндекс Go', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 },
-        { id: 'bibi', name: 'BiBi', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 },
-        { id: 'swiftdrive', name: 'SwiftDrive', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 }
-    ],
-    partnerType: 'партнеров'
-  },
-  {
     id: 'fuel-cards',
     name: 'Топливные карты',
     icon: '⛽',
@@ -213,6 +48,171 @@ export const benefitCategories: BenefitCategory[] = [
     providers: [],
     partnerType: 'точек',
     partnerCount: 700
+  },
+  {
+    id: 'carsharing',
+    name: 'Каршеринг',
+    icon: '🚗',
+    description: 'Аренда автомобилей',
+    color: 'bg-gradient-to-br from-blue-500 to-blue-600',
+    totalLimit: 20000,
+    usedPoints: 0,
+    providers: [
+        { id: 'belkacar', name: 'BelkaCar', category: 'carsharing', description: 'Каршеринг', logo: '/placeholder.svg', pointsRate: 1, minPoints: 200, maxPoints: 5000 },
+        { id: 'yandex-drive', name: 'Яндекс.Драйв', category: 'carsharing', description: 'Каршеринг', logo: '/placeholder.svg', pointsRate: 1, minPoints: 200, maxPoints: 5000 }
+    ],
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'taxi',
+    name: 'Такси',
+    icon: '🚕',
+    description: 'Поездки на такси',
+    color: 'bg-gradient-to-br from-yellow-500 to-yellow-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [
+        { id: 'yandex-go-taxi', name: 'Яндекс Go', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 },
+        { id: 'bibi', name: 'BiBi', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 },
+        { id: 'swiftdrive', name: 'SwiftDrive', category: 'taxi', description: 'Такси', logo: '/placeholder.svg', pointsRate: 1, minPoints: 100, maxPoints: 3000 }
+    ],
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'yandex-go',
+    name: 'Яндекс Go (еда, продукты и товары)',
+    icon: '🛒',
+    description: 'Доставка еды, продуктов и товаров',
+    color: 'bg-gradient-to-br from-purple-500 to-purple-600',
+    totalLimit: 20000,
+    usedPoints: 0,
+    providers: [
+        { id: 'yandex-go-provider-1', name: 'Яндекс Go', category: 'yandex-go', description: 'Доставка еды, продуктов и товаров', logo: '/placeholder.svg', pointsRate: 1, minPoints: 500, maxPoints: 20000 },
+        { id: 'yandex-go-provider-2', name: 'Яндекс Go', category: 'yandex-go', description: 'Доставка еды, продуктов и товаров', logo: '/placeholder.svg', pointsRate: 1, minPoints: 500, maxPoints: 20000 }
+    ],
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'smartway',
+    name: 'Smartway (билеты, отели, ЖД)',
+    icon: '✈️',
+    description: 'Бронирование билетов и отелей',
+    color: 'bg-gradient-to-br from-sky-500 to-sky-600',
+    totalLimit: 40000,
+    usedPoints: 0,
+    providers: [
+        { id: 'smartway-provider-1', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 },
+        { id: 'smartway-provider-2', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 },
+        { id: 'smartway-provider-3', name: 'Smartway', category: 'smartway', description: 'Бронирование билетов и отелей', logo: '/placeholder.svg', pointsRate: 1, minPoints: 1000, maxPoints: 40000 }
+    ],
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'dms',
+    name: 'ДМС',
+    icon: '🏥',
+    description: 'Добровольное медицинское страхование',
+    color: 'bg-gradient-to-br from-red-500 to-red-600',
+    totalLimit: 40000,
+    usedPoints: 0,
+    providers: [{ id: 'sogaz', name: 'СОГАЗ-Мед', category: 'dms', description: 'Полис ДМС с широкой сетью клиник', logo: '/placeholder.svg', pointsRate: 1, minPoints: 5000, maxPoints: 40000 }],
+    partnerType: 'партнеров'
+  },
+  {
+    id: 'fitness-coach',
+    name: 'Консультация с фитнес-тренером',
+    icon: '🏋️',
+    description: 'Персональные тренировки для здоровья и прогресса.',
+    color: 'bg-gradient-to-br from-lime-500 to-lime-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'healthy-lifestyle',
+    name: 'Консультация по ЗОЖ',
+    icon: '🥗',
+    description: 'Рекомендации по питанию, активности и профилактике.',
+    color: 'bg-gradient-to-br from-green-500 to-green-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'pet-care',
+    name: 'Консультация по уходу за питомцем',
+    icon: '🐾',
+    description: 'Советы по воспитанию и заботе о животном.',
+    color: 'bg-gradient-to-br from-amber-500 to-amber-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'lawyer',
+    name: 'Консультация юриста',
+    icon: '⚖️',
+    description: 'Юридическая помощь в личных вопросах.',
+    color: 'bg-gradient-to-br from-stone-500 to-stone-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'finance-expert',
+    name: 'Консультация по личным финансам',
+    icon: '💰',
+    description: 'Поддержка и советы по управлению финансами.',
+    color: 'bg-gradient-to-br from-emerald-500 to-emerald-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'icf-coach',
+    name: 'Сессия с коучем (ICF)',
+    icon: '🎯',
+    description: 'Помощь в достижении целей и развитию навыков.',
+    color: 'bg-gradient-to-br from-cyan-500 to-cyan-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'mindfulness-coach',
+    name: 'Консультация по практикам осознанности',
+    icon: '🧘',
+    description: 'Навыки концентрации и стрессоустойчивости.',
+    color: 'bg-gradient-to-br from-teal-500 to-teal-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
+  },
+  {
+    id: 'sex-expert',
+    name: 'Консультация по сексуальным отношениям',
+    icon: '❤️',
+    description: 'Поддержка и советы по вопросам интимной жизни.',
+    color: 'bg-gradient-to-br from-rose-500 to-rose-600',
+    totalLimit: 15000,
+    usedPoints: 0,
+    providers: [],
+    partnerType: 'партнеров',
+    partnerCount: 1
   },
   {
     id: 'languages',
